@@ -10,14 +10,35 @@ interface Props {
 const className = 'LaunchList';
 
 const LaunchList: React.FC<Props> = ({ data }) => (
-  <div className={className}>
+  <div css={css`
+  height: 100vh;
+  overflow: hidden auto;
+  background-color: #ececec;
+  width: 300px;
+  padding-left: 20px;
+  padding-right: 20px;
+  `}>
     <h3>Launches</h3>
-    <ol className={`${className}__list`}>
+    <ol 
+    css={css`
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    `}
+    >
       {!!data.launches &&
         data.launches.map(
           (launch, i) =>
             !!launch && (
-              <li key={i} className={`${className}__item`}>
+              <li key={i} 
+              css={css`
+              padding-top: 20px;
+              padding-bottom: 20px;
+              border-top: 1px solid #919191;
+              cursor: pointer;
+              `}
+
+              >
                 {launch.mission_name} ({launch.launch_year})
               </li>
             ),
