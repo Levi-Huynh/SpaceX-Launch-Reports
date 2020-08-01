@@ -1,5 +1,5 @@
 [build]
-base = "/" 
+base = "/graphql-typescript-react" 
 publish="/build"
 command = "yarn build"
 
