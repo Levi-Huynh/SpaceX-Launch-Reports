@@ -12,7 +12,7 @@ display: 'flex',
 width: '100vw',
 height: '100vh',
 overflow: 'hidden',
-
+font: 'Poppins', 
 })
 
 const App = () => {
