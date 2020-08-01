@@ -1,43 +1,29 @@
 import * as React from 'react';
 import { LaunchListQuery } from '../../generated/graphql';
 import './styles.css';
-import {css, jsx} from '@emotion/core'
 
-interface Props {
+export interface OwnProps {
+  handleIdChange: (newId: number) => void;
+}
+
+interface Props extends OwnProps {
   data: LaunchListQuery;
 }
 
 const className = 'LaunchList';
 
-const LaunchList: React.FC<Props> = ({ data }) => (
-  <div css={css`
-  height: 100vh;
-  overflow: hidden auto;
-  background-color: #ececec;
-  width: 300px;
-  padding-left: 20px;
-  padding-right: 20px;
-  `}>
+const LaunchList: React.FC<Props> = ({ data, handleIdChange }) => (
+  <div className={className}>
     <h3>Launches</h3>
-    <ol 
-    css={css`
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    `}
-    >
+    <ol className={`${className}__list`}>
       {!!data.launches &&
         data.launches.map(
           (launch, i) =>
             !!launch && (
-              <li key={i} 
-              css={css`
-              padding-top: 20px;
-              padding-bottom: 20px;
-              border-top: 1px solid #919191;
-              cursor: pointer;
-              `}
-
+              <li
+                key={i}
+                className={`${className}__item`}
+                onClick={() => handleIdChange(launch.flight_number!)}
               >
                 {launch.mission_name} ({launch.launch_year})
               </li>
